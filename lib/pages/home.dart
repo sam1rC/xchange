@@ -32,6 +32,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ))
                   .toList()),
+          const Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: TextField(
+              decoration:
+                  InputDecoration(filled: true, fillColor: Colors.white60),
+            ),
+          ),
           Center(
             child: ElevatedButton(
               onPressed: () {},
