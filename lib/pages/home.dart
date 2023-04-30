@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xchange/services/change_currencies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final items = ['COP', 'USD'];
+  String usd = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +39,15 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            const TextField(
-              decoration:
-                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
+            TextField(
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFD9D9D9),
+              ),
+              onChanged: (value) {
+                usd = copToUsd(value);
+                setState(() {});
+              },
             ),
             IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
             const SizedBox(
@@ -52,11 +60,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            const SizedBox(
+            SizedBox(
               height: 50,
               width: 250,
               child: Card(
-                child: Center(child: Text('')),
+                child: Center(child: Text(usd)),
               ),
             ),
             Center(
