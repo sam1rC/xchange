@@ -42,18 +42,22 @@ class _HomePageState extends State<HomePage> {
                   InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
             ),
             IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
-            const TextField(
-              readOnly: true,
-              decoration:
-                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
+            const SizedBox(
+              height: 50,
+              width: 250,
+              child: Card(
+                child: Center(child: Text('USD')),
+              ),
             ),
             const SizedBox(
               height: 15,
             ),
-            const TextField(
-              readOnly: true,
-              decoration:
-                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
+            const SizedBox(
+              height: 50,
+              width: 250,
+              child: Card(
+                child: Center(child: Text('')),
+              ),
             ),
             Center(
               child: ElevatedButton(
