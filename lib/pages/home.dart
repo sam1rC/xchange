@@ -19,33 +19,50 @@ class _HomePageState extends State<HomePage> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
         ],
       ),
-      body: Column(
-        children: [
-          CupertinoPicker(
-              itemExtent: 64,
-              onSelectedItemChanged: (index) {},
-              children: items
-                  .map((item) => Center(
-                        child: Text(
-                          item,
-                          style: const TextStyle(fontSize: 25),
-                        ),
-                      ))
-                  .toList()),
-          const Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: TextField(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          children: [
+            CupertinoPicker(
+                itemExtent: 64,
+                onSelectedItemChanged: (index) {},
+                children: items
+                    .map((item) => Center(
+                          child: Text(
+                            item,
+                            style: const TextStyle(fontSize: 25),
+                          ),
+                        ))
+                    .toList()),
+            const SizedBox(
+              height: 15,
+            ),
+            const TextField(
               decoration:
-                  InputDecoration(filled: true, fillColor: Colors.white60),
+                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
+            const TextField(
+              readOnly: true,
+              decoration:
+                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 15,
+            ),
+            const TextField(
+              readOnly: true,
+              decoration:
+                  InputDecoration(filled: true, fillColor: Color(0xFFD9D9D9)),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Icon(Icons.add),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
