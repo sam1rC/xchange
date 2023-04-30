@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final items = ['COP', 'USD'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +21,23 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          CupertinoPicker(
+              itemExtent: 64,
+              onSelectedItemChanged: (index) {},
+              children: items
+                  .map((item) => Center(
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 25),
+                        ),
+                      ))
+                  .toList()),
           Center(
             child: ElevatedButton(
               onPressed: () {},
               child: const Icon(Icons.add),
             ),
-          )
+          ),
         ],
       ),
     );
