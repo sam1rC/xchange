@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xchange/pages/home.dart';
+import 'package:xchange/pages/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
+        '/settings': (context) => const SettingPage(),
       },
     );
   }
