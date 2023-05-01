@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               height: 15,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(),
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFD9D9D9),
