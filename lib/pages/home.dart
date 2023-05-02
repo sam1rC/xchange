@@ -18,12 +18,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Divisas"),
         actions: [
-          IconButton(onPressed:  () async {
-              await Navigator.pushNamed(context, '/settings');
-              //update the home page
-              setState(() {});
-            },
-             icon: const Icon(Icons.settings))
+          IconButton(
+              onPressed: () async {
+                await Navigator.pushNamed(context, '/settings');
+                //update the home page
+                setState(() {});
+              },
+              icon: const Icon(Icons.settings))
         ],
       ),
       body: Padding(
