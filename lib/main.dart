@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xchange/pages/currencies.dart';
 import 'package:xchange/pages/home.dart';
 import 'package:xchange/pages/settings.dart';
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/settings': (context) => const SettingPage(),
+        '/currencies': (context) => const CurrenciesPage()
       },
     );
   }

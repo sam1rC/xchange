@@ -76,7 +76,9 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/currencies');
+                },
                 child: const Icon(Icons.add),
               ),
             ),
