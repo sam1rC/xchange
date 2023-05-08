@@ -38,17 +38,16 @@ class _CurrenciesPageState extends State<CurrenciesPage> {
       ),
       body: ListView(
         padding: const EdgeInsets.all(12),
-        children: [
-          ...currencies.map(buildSingleCheckBox).toList()
-          
-        ],
+        children: [...currencies.map(buildSingleCheckBox).toList()],
       ),
-    );    
+    );
   }
+
   Widget buildSingleCheckBox(CheckBoxState checkbox) => CheckboxListTile(
-            activeColor: Colors.black,
-            value: checkbox.value, 
-            title: Text(checkbox.title),
-            onChanged: (value) => setState(() => checkbox.value = value!)
-            );
+      activeColor: Colors.black,
+      value: checkbox.value,
+      title: Text(checkbox.title),
+      onChanged: (value) => setState(() {
+            checkbox.value = value!;
+          }));
 }
