@@ -1,6 +1,9 @@
+import 'package:provider/provider.dart';
 import 'package:xchange/model/checkbox_state.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
+import 'package:xchange/providers/currencies_provider.dart';
 
 class CurrenciesPage extends StatefulWidget {
   const CurrenciesPage({super.key});
@@ -13,16 +16,10 @@ class _CurrenciesPageState extends State<CurrenciesPage> {
   @override
   bool value = false;
 
-  final currencies = [
-    CheckBoxState(title: 'COP'),
-    CheckBoxState(title: 'USD'),
-    CheckBoxState(title: 'JPY'),
-    CheckBoxState(title: 'EUR'),
-    CheckBoxState(title: 'CAD'),
-    CheckBoxState(title: 'CHF'),
-  ];
+  
 
   Widget build(BuildContext context) {
+    final currencies = context.watch<checkBoxProvider>().currencies;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Divisas"),
@@ -38,7 +35,8 @@ class _CurrenciesPageState extends State<CurrenciesPage> {
       ),
       body: ListView(
         padding: const EdgeInsets.all(12),
-        children: [...currencies.map(buildSingleCheckBox).toList()],
+        children: [...currencies.map(buildSingleCheckBox).toList(),
+        ],
       ),
     );
   }

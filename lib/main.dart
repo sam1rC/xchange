@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xchange/pages/currencies.dart';
 import 'package:xchange/pages/home.dart';
 import 'package:xchange/pages/settings.dart';
+import 'package:xchange/providers/currencies_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(create: (_) => checkBoxProvider(), child: const MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

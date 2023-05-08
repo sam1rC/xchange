@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:xchange/model/checkbox_state.dart';
 import 'package:xchange/services/change_currencies.dart';
 import 'package:xchange/services/get_currencies.dart';
+import 'package:provider/provider.dart';
+import 'package:xchange/providers/currencies_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,9 +15,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final items = ['COP', 'USD'];
+  
   String usd = "";
   @override
   Widget build(BuildContext context) {
+    List<String> activos = [];
+    List<CheckBoxState> currencies = context.watch<checkBoxProvider>().currencies;
+    for(int i =0; i < currencies.length; i++){
+      if(currencies[i].value){
+        activos.add(currencies[i].title);
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Divisas"),
@@ -87,8 +98,10 @@ class _HomePageState extends State<HomePage> {
                 child: const Icon(Icons.add),
               ),
             ),
+            Text(activos.toString())
           ],
         ),
+        
       ),
     );
   }
