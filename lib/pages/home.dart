@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xchange/services/change_currencies.dart';
+import 'package:xchange/services/get_currencies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -76,8 +77,12 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/currencies');
+                onPressed: () async {
+                  await Navigator.pushNamed(context, '/currencies');
+                  //funcione que tome las monedas elegidas
+                  setState(() {
+                    getCurrencies();
+                  });
                 },
                 child: const Icon(Icons.add),
               ),
