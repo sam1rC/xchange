@@ -15,14 +15,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final items = ['COP', 'USD'];
-  
+
   String usd = "";
+  late List<CheckBoxState> currencies;
+
   @override
   Widget build(BuildContext context) {
+    currencies = context.watch<checkBoxProvider>().currencies;
     List<String> activos = [];
-    List<CheckBoxState> currencies = context.watch<checkBoxProvider>().currencies;
-    for(int i =0; i < currencies.length; i++){
-      if(currencies[i].value){
+    for (int i = 0; i < currencies.length; i++) {
+      if (currencies[i].value) {
         activos.add(currencies[i].title);
       }
     }
@@ -39,69 +41,61 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.settings))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          children: [
-            CupertinoPicker(
-                itemExtent: 64,
-                onSelectedItemChanged: (index) {},
-                children: items
-                    .map((item) => Center(
-                          child: Text(
-                            item,
-                            style: const TextStyle(fontSize: 25),
-                          ),
-                        ))
-                    .toList()),
-            const SizedBox(
-              height: 15,
-            ),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Color(0xFFD9D9D9),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              CupertinoPicker(
+                  itemExtent: 64,
+                  onSelectedItemChanged: (index) {},
+                  children: items
+                      .map((item) => Center(
+                            child: Text(
+                              item,
+                              style: const TextStyle(fontSize: 25),
+                            ),
+                          ))
+                      .toList()),
+              const SizedBox(
+                height: 15,
               ),
-              onChanged: (value) {
-                usd = copToUsd(value);
-                setState(() {});
-              },
-            ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
-            const SizedBox(
-              height: 50,
-              width: 250,
-              child: Card(
-                child: Center(child: Text('USD')),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              height: 50,
-              width: 250,
-              child: Card(
-                child: Center(child: Text(usd)),
-              ),
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  await Navigator.pushNamed(context, '/currencies');
-                  //funcione que tome las monedas elegidas
-                  setState(() {
-                    getCurrencies();
-                  });
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFD9D9D9),
+                ),
+                onChanged: (value) {
+                  usd = copToUsd(value);
+                  setState(() {});
                 },
-                child: const Icon(Icons.add),
               ),
-            ),
-            Text(activos.toString())
-          ],
+              IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
+              activos.isNotEmpty
+                  ? Column(
+                      children: [
+                        for (int i = 0; i < activos.length; i++)
+                          Card(child: Text(activos[i]))
+                      ],
+                    )
+                  : Text("Vacío"),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await Navigator.pushNamed(context, '/currencies');
+                    //funcione que tome las monedas elegidas
+                    setState(() {
+                      //activos = getActivos(currencies);
+                    });
+                  },
+                  child: const Icon(Icons.add),
+                ),
+              ),
+              Text(activos.toString())
+            ],
+          ),
         ),
-        
       ),
     );
   }
