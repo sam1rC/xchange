@@ -26,6 +26,13 @@ class _HomePageState extends State<HomePage> {
     amount = context.watch<checkBoxProvider>().principalAmount;
     currencies = context.watch<checkBoxProvider>().currencies;
     List<String> activos = [];
+    Map values = {
+      'USD': copToUsd(amount),
+      'JPY': copToJpy(amount),
+      'EUR': copToEur(amount),
+      'CAD': copToCad(amount),
+      'CHF': copToChf(amount),
+    };
     for (int i = 0; i < currencies.length; i++) {
       if (currencies[i].value) {
         activos.add(currencies[i].title);
@@ -82,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                         for (int i = 0; i < activos.length; i++)
                           CardWidget(
                             title: activos[i],
-                            change: amount.toString(),
+                            change: values[activos[i]].toString(),
                           )
                       ],
                     )
