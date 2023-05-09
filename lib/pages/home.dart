@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                           )
                       ],
                     )
-                  : Text("Vacío"),
+                  : Text("¡Agrega tu primera divisa!"),
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
@@ -106,7 +106,6 @@ class _HomePageState extends State<HomePage> {
                   child: const Icon(Icons.add),
                 ),
               ),
-              Text(activos.toString())
             ],
           ),
         ),
