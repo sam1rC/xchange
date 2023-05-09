@@ -5,6 +5,7 @@ import 'package:xchange/services/change_currencies.dart';
 import 'package:xchange/services/get_currencies.dart';
 import 'package:provider/provider.dart';
 import 'package:xchange/providers/currencies_provider.dart';
+import 'package:xchange/widgets/card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   ? Column(
                       children: [
                         for (int i = 0; i < activos.length; i++)
-                          Card(child: Text(activos[i]))
+                          CardWidget(title: activos[i], change: '0',)
                       ],
                     )
                   : Text("Vacío"),
