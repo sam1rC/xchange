@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xchange/model/checkbox_state.dart';
+
 import 'package:xchange/services/change_currencies.dart';
 import 'package:xchange/services/get_currencies.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +18,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final items = ['COP', 'USD'];
 
-  String usd = "";
   late List<CheckBoxState> currencies;
+  late double amount;
 
   @override
   Widget build(BuildContext context) {
+    amount = context.watch<checkBoxProvider>().principalAmount;
     currencies = context.watch<checkBoxProvider>().currencies;
     List<String> activos = [];
     for (int i = 0; i < currencies.length; i++) {
@@ -68,8 +70,9 @@ class _HomePageState extends State<HomePage> {
                   fillColor: Color(0xFFD9D9D9),
                 ),
                 onChanged: (value) {
-                  usd = copToUsd(value);
-                  setState(() {});
+                  setState(() {
+                    context.read<checkBoxProvider>().setAmount(value);
+                  });
                 },
               ),
               IconButton(onPressed: () {}, icon: const Icon(Icons.swap_vert)),
@@ -77,7 +80,10 @@ class _HomePageState extends State<HomePage> {
                   ? Column(
                       children: [
                         for (int i = 0; i < activos.length; i++)
-                          CardWidget(title: activos[i], change: '0',)
+                          CardWidget(
+                            title: activos[i],
+                            change: amount.toString(),
+                          )
                       ],
                     )
                   : Text("Vacío"),

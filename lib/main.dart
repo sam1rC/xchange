@@ -6,7 +6,10 @@ import 'package:xchange/pages/settings.dart';
 import 'package:xchange/providers/currencies_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (_) => checkBoxProvider(), child: const MyApp(),));
+  runApp(ChangeNotifierProvider(
+    create: (_) => checkBoxProvider(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
